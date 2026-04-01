@@ -30,7 +30,7 @@ public class Prestation {
     }
 
     public String toString() {
-        String message = "La prestation avec le code %s et le libelle %s coute %d";
+        String message = "La prestation avec le code %s et le libelle %s coute %.2f";
         return String.format(message,  this.code, this.libelle, this.prix);
     }
 }

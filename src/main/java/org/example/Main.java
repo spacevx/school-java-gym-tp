@@ -1,11 +1,12 @@
 package org.example;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         Prestation sauna    = new Prestation("SAUNA",    "Accès sauna",      5.0);
         Prestation coach    = new Prestation("COACH",    "Séance coaching",  25.0);
@@ -67,6 +68,34 @@ public class Main {
             salle.trouverAdherent(99);
         } catch (IllegalArgumentException e) {
             System.out.println("Exception : " + e.getMessage());
+        }
+
+        /* TP DAO */
+
+        AdherentDAO dao = new AdherentDAO();
+
+        dao.inserer(new Adherent(1, "Alice"));
+        dao.inserer(new Adherent(2, "Bob"));
+
+        System.out.println("Liste des adhérents");
+        for (Adherent a : dao.lister()) {
+            System.out.println(a.getId() + " - " + a.getNom());
+        }
+
+        System.out.println("\nModif de Bob");
+        dao.modifier(new Adherent(2, "Robert"));
+
+        System.out.println("\nListe après modif");
+        for (Adherent a : dao.lister()) {
+            System.out.println(a.getId() + " - " + a.getNom());
+        }
+
+        System.out.println("\nSuppr de Alice");
+        dao.supprimer(1);
+
+        System.out.println("\nListe finale");
+        for (Adherent a : dao.lister()) {
+            System.out.println(a.getId() + " - " + a.getNom());
         }
     }
 }

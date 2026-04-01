@@ -17,6 +17,10 @@ public class Adherent {
         this.reservations = new ArrayList<>();
     }
 
+    public Adherent(int id, String nom) {
+        this(id, nom, null);
+    }
+
     public void reserver(Seance s) {
         reservations.add(new Reservation(s));
     }
@@ -45,6 +49,7 @@ public class Adherent {
 
     public int getId() { return id; }
     public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
     public Abonnement getAbonnement() { return abonnement; }
     public List<Reservation> getReservations() { return reservations; }
 
